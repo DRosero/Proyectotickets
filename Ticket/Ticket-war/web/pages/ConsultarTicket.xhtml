@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Listado de Tickets</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Listado de Tickets"/></h1>
+                <h:dataTable value="#{beanTicket.consultarTodosTicket()}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="NumeroTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numeroTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="DescripcionTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcionTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="EstadoTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.estadoTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="PrioridadTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prioridadTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="FechaTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaTicket}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="DealsTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dealsTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre usuario"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuario.nombreUsuario}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Apellido usuario"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuario.apellidoUsuario}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form><br/><br/><br/><br/>
+
+            <h:form>
+                <h:selectOneMenu id="comboEstado" value="#{beanTicket.ticket.estadoTicket}">
+                    <f:selectItem itemLabel="Seleccione estado" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Open" itemValue="Open"/>
+                    <f:selectItem itemLabel="Closed" itemValue="Closed"/>
+                    <f:selectItem itemLabel="Overdue" itemValue="Overdue"/>
+                    <f:selectItem itemLabel="Escalated" itemValue="Escalated"/>
+                    <f:selectItem itemLabel="High Priority" itemValue="High Priority"/>
+                </h:selectOneMenu>
+
+                <h1><h:outputText value="Consulta por estado de tickets"/></h1>
+                <h:dataTable value="#{beanTicket.consultarTicketporEstadoBean()}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="NumeroTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numeroTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="DescripcionTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descripcionTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="EstadoTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.estadoTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="PrioridadTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prioridadTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="FechaTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaTicket}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="DealsTicket"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dealsTicket}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre usuario"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuario.nombreUsuario}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Apellido usuario"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idUsuario.apellidoUsuario}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>

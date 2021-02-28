@@ -8,6 +8,8 @@ package com.prueba.controlador;
 import com.prueba.dao.TicketFacade;
 import com.ticket.entidad.Ticket;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 
@@ -30,6 +32,16 @@ public class CtrlTicket implements Serializable{
     
     public void crearTicket(Ticket ticket){
         ticketFacade.create(ticket);
+    }
+    
+    public List<Ticket> consultarTodos(){
+        return ticketFacade.findAll();        
+    }
+    
+    public List<Ticket> consultaTicketporEstadoCtrl(Ticket ticket){
+        List<Ticket> listaTicket=new ArrayList<>();
+        listaTicket=ticketFacade.consultarTicketporEstado(ticket);
+        return listaTicket;
     }
     
 }
